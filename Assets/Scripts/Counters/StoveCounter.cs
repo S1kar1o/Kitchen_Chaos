@@ -48,12 +48,13 @@ public class StoveCounter : BaseCounter, IHasProgress
                         progressNormalized = fryingTimer / fryingRecipeSO.fryingProgresMax
                     });
 
-                    if (fryingTimer > fryingRecipeSO.fryingProgresMax)
+                    if (fryingTimer >= fryingRecipeSO.fryingProgresMax)
                     {
                         GetKitchenObject().DestroySelf();
                         KitchenObject.SpawnKitchenObject(fryingRecipeSO.output, this);
                         state = State.Fried;
                         burningTimer = 0f;
+                        fryingTimer = 0;
                         burningRecepieSO = GetBurningRecipeSOWithInput(GetKitchenObject().GetkitchenObjectSO());
                         OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
                         {

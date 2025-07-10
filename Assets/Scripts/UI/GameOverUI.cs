@@ -2,15 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOverUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI recipeDeliveredText;
+    [SerializeField] Button playAgainButton;
     private void Start()
     {
         GameManager.Instance.OnStateChanged += GameManager_OnStateChanged;
+        playAgainButton.onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        });
         Hide();
     }
+   
     private void Update()
     {
        recipeDeliveredText.text=DeliveryManager.Instance.GetDeliveredAmount().ToString();

@@ -37,7 +37,7 @@ public class DeliveryResultUI : MonoBehaviour
     }
     private void DeliveryManager_OnRecipeFailed(object sender, System.EventArgs e)
     {
-        gameObject.SetActive(false);
+        gameObject.SetActive(true);
         animator.SetTrigger(POP_UP);
 
         backgroundImage.color= failedColor;
